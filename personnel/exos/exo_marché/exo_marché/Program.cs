@@ -18,29 +18,21 @@ namespace exo_marché
             WorkSheet workSheet = workBook.WorkSheets[1];
 
 
-            // TEST AFFICHAGE
-            foreach (var cell in workSheet["A10:A20"])
+            // Compteur pour les vendeurs de "Pêches"
+            int peches = 0;
+
+            for (int i = 1; i <= 80; i++)
             {
-                Console.WriteLine("Cell {0} has value '{1}'", cell.AddressString, cell.Text);
-                
-            }
-
-            // Combien y a-t-il de vendeurs de pêche dans ce marché ?
-
-            workSheet["C1:C100"].Value = "Pêches";
-
-
-            foreach (var row in workSheet.Rows)
-            {
-                foreach (var col in row)
+                if (workSheet[$"C{i}"].StringValue == "Pêches")
                 {
-                    Console.WriteLine(col.Value);
+                    peches++;
                 }
             }
 
-
-
+            Console.WriteLine($"Nombre de vendeurs de Pêches : {peches}");
             Console.ReadLine();
+
+            // Solution inspirée avec chatgpt
         }
     }
 }
